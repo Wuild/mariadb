@@ -19,6 +19,7 @@ module.exports = class DB {
         this.table = table || "";
         this.columns = [];
         this.sort = [];
+        this.joins = [];
         this.limit = null;
 
         this.connection = mariadb.createPool({
@@ -60,6 +61,25 @@ module.exports = class DB {
         this.sort.push(sort);
     }
 
+    getJoinType(key) {
+        switch (key.toLowerCase()) {
+            default:
+            case "left":
+                return "LEFT JOIN";
+                break;
+            case "inner":
+                return "INNER JOIN";
+                break;
+            case "right":
+                return "RIGHT JOIN";
+                break;
+        }
+    }
+
+    join(type, table, tableAndColA, tableAndColB) {
+        this.joins.push(sprintf("%s %s ON %s = %s", this.getJoinType(type), this.options.prefix + table, tableAndColA, tableAndColB));
+    }
+
     _placeHoldersString(length) {
         let places = "";
         for (let i = 1; i <= length; i++) {
@@ -77,11 +97,12 @@ module.exports = class DB {
             let query = [];
             query.push(this.columns.length > 0 ? this.columns.join(", ") : "*");
             query.push(this.getTable());
+            query.push(this.joins.length > 0 ? this.joins.join(" ") : "");
             query.push(whereStatement ? "WHERE " + whereStatement : "");
             query.push(this.sort.length > 0 ? " ORDER BY " + this.sort.join(",") : "");
             query.push(this.limit ? "LIMIT " + this.limit : "");
 
-            this.query(vsprintf("SELECT %s FROM %s %s %s %s", query), args).then(function (rows) {
+            this.query(vsprintf("SELECT %s FROM %s %s %s %s %s", query), args).then(function (rows) {
                 delete rows.meta;
                 forEach(rows, function (item, index) {
                     let newItem = {};

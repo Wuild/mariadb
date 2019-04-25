@@ -7,7 +7,9 @@ Install with npm:
 npm install --save @wuild/mariadb
 ```
 
-#### Example
+### Examples
+
+#### Setup
 ```javascript
 const DB = require("@wuild/mariadb");
 
@@ -17,7 +19,10 @@ DB.setOptions({
     password: "",
     database: ""
 });
+```
 
+#### Full
+```javascript
 // Set table
 let db = new DB("table_name");
 
@@ -44,6 +49,18 @@ db.insert({
     return db.close()
 }).catch(function (err) {
     db.close();
+});
+```
+
+#### Joins
+```javascript
+let db = new DB("table1 as t1");
+db.setLimit(1);
+db.join("left", "table2 as t2", "t1.id", "t2.id");
+db.select().then(function(rows){
+    console.log(db.limit);
+    db.close();
+    console.log(rows);
 });
 ```
 

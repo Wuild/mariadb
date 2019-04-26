@@ -1,6 +1,8 @@
 # MariaDB
 This is a small and simple wrapper for mariadb in node
 
+looking for a sqlite wrapper see: https://github.com/Wuild/sqlite
+
 ## TODO
 * Write a better README
 

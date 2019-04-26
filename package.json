@@ -1,6 +1,6 @@
 {
   "name": "@wuild/mariadb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple node wrapper for mariadb",
   "main": "db.js",
   "scripts": {

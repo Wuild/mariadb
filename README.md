@@ -65,4 +65,4 @@ db.select().then(function(rows){
 ```
 
 #### License
-Copyright © 2018, Wuild. Released under the MIT License.
+Copyright © 2018, [Wuild](https://github.com/Wuild) Released under the [MIT license](https://opensource.org/licenses/MIT).

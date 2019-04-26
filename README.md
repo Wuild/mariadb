@@ -1,4 +1,4 @@
-# WebSocket
+# MariaDB
 This is a small and simple wrapper for mariadb in node
 
 ## Install

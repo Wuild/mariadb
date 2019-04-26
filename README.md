@@ -1,7 +1,10 @@
 # MariaDB
 This is a small and simple wrapper for mariadb in node
 
-## Install
+## TODO
+* Write a better README
+
+## Installation
 Install with npm:
 ```
 npm install --save @wuild/mariadb

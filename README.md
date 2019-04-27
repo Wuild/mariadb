@@ -3,6 +3,8 @@ This is a small and simple wrapper for mariadb in node
 
 looking for a sqlite wrapper see: https://github.com/Wuild/sqlite
 
+[![npm version](https://badge.fury.io/js/%40wuild%2Fmariadb.svg)](https://badge.fury.io/js/%40wuild%2Fmariadb)
+
 ## TODO
 * Write a better README
 
